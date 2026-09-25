@@ -50,8 +50,6 @@ Updated TDD, Electron/SQLite, and ADR guidance, refreshed the instruction index,
 - `.github/instructions/README.md` - Instruction catalog and links
 - `ai-logs/2026/09/25/d79e7e5d-59cd-426a-b501-ff0efedad44a/conversation.md` - Conversation provenance
 - `ai-logs/2026/09/25/d79e7e5d-59cd-426a-b501-ff0efedad44a/summary.md` - Work summary
-- `ai-logs/2026/09/25/d79e7e5d-59cd-426a-b501-ff0efedad44a/summary.md` - Work summary
-
 ### 3
 
 [2026-09-25T19:38:54Z] johnmillerATcodemag-com

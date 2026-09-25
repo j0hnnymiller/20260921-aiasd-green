@@ -47,12 +47,12 @@ Define the minimum requirements for a simple TODO list manager that lets a singl
 
 ## 2. Stakeholders and Users
 
-| Stakeholder | Goal | Interest |
-| --- | --- | --- |
-| Individual user | Capture and manage personal tasks quickly | Simple, reliable workflows |
-| Product owner | Deliver a focused MVP | Clear scope and measurable acceptance |
-| Developer | Implement behavior without hidden decisions | Stable requirements and edge cases |
-| Tester | Verify user-visible behavior | Deterministic acceptance criteria |
+| Stakeholder     | Goal                                        | Interest                              |
+| --------------- | ------------------------------------------- | ------------------------------------- |
+| Individual user | Capture and manage personal tasks quickly   | Simple, reliable workflows            |
+| Product owner   | Deliver a focused MVP                       | Clear scope and measurable acceptance |
+| Developer       | Implement behavior without hidden decisions | Stable requirements and edge cases    |
+| Tester          | Verify user-visible behavior                | Deterministic acceptance criteria     |
 
 ### 2.1 Primary User
 
@@ -329,12 +329,12 @@ The specification does not prescribe a framework, component library, visual them
 
 Each TODO item MUST contain:
 
-| Field | Requirement |
-| --- | --- |
-| Identifier | Unique within the user's list and stable for the item's lifetime |
-| Title | Non-blank text after trimming leading and trailing whitespace |
-| Completion state | Active or completed |
-| Creation timestamp | Set when the item is first created and unchanged afterward |
+| Field              | Requirement                                                      |
+| ------------------ | ---------------------------------------------------------------- |
+| Identifier         | Unique within the user's list and stable for the item's lifetime |
+| Title              | Non-blank text after trimming leading and trailing whitespace    |
+| Completion state   | Active or completed                                              |
+| Creation timestamp | Set when the item is first created and unchanged afterward       |
 
 ### 9.3 Persistence Interface
 
@@ -394,27 +394,27 @@ The persistence mechanism MUST support saving the complete TODO collection and r
 
 ## 11. Traceability Matrix
 
-| Goal | Requirements | Acceptance criteria | Verification |
-| --- | --- | --- | --- |
-| Capture tasks | FR-001, FR-002, FR-003 | AC-001, AC-002 | Functional tests |
-| Review current work | FR-004, FR-009, FR-010, FR-011 | AC-006, AC-008 | Functional and inspection tests |
-| Maintain task details | FR-005, FR-006 | AC-003 | Functional tests |
-| Track progress | FR-007, FR-011 | AC-004 | Functional tests |
-| Remove obsolete work | FR-008 | AC-005 | Functional tests |
-| Avoid data loss | FR-012, FR-013, FR-014, NFR-004 | AC-005, AC-007, AC-008 | Data-integrity and fault-injection tests |
-| Provide inclusive, usable access | NFR-001, NFR-002, NFR-003, NFR-005, NFR-007 | AC-008, AC-009 | Performance, accessibility, responsive, and inspection tests |
-| Keep MVP private | NFR-006 | Not applicable | Inspection and network test |
+| Goal                             | Requirements                                | Acceptance criteria    | Verification                                                 |
+| -------------------------------- | ------------------------------------------- | ---------------------- | ------------------------------------------------------------ |
+| Capture tasks                    | FR-001, FR-002, FR-003                      | AC-001, AC-002         | Functional tests                                             |
+| Review current work              | FR-004, FR-009, FR-010, FR-011              | AC-006, AC-008         | Functional and inspection tests                              |
+| Maintain task details            | FR-005, FR-006                              | AC-003                 | Functional tests                                             |
+| Track progress                   | FR-007, FR-011                              | AC-004                 | Functional tests                                             |
+| Remove obsolete work             | FR-008                                      | AC-005                 | Functional tests                                             |
+| Avoid data loss                  | FR-012, FR-013, FR-014, NFR-004             | AC-005, AC-007, AC-008 | Data-integrity and fault-injection tests                     |
+| Provide inclusive, usable access | NFR-001, NFR-002, NFR-003, NFR-005, NFR-007 | AC-008, AC-009         | Performance, accessibility, responsive, and inspection tests |
+| Keep MVP private                 | NFR-006                                     | Not applicable         | Inspection and network test                                  |
 
 ## 12. Risks and Open Questions
 
-| ID | Question or risk | Impact | Owner | Status |
-| --- | --- | --- | --- | --- |
-| OQ-001 | Should the MVP support a backend or remain local-only? | Changes persistence, privacy, and sync requirements | Product owner | Assumed local-only for MVP |
-| OQ-002 | What confirmation wording and focus behavior should the delete confirmation use? | Affects deletion clarity and accidental-loss risk | Product owner | Open; deletion confirmation is mandatory |
-| OQ-003 | Which browsers, operating systems, or runtime environments are supported? | Determines compatibility testing | Engineering | Open |
-| OQ-004 | What should happen if stored data is malformed? | Affects recovery and user-visible error handling | Engineering and product | Open; must be resolved before implementation completion |
-| R-001 | Local storage may be cleared or become unavailable. | User data may be unavailable. | Engineering | Mitigated by clear errors and documented MVP limitation |
-| R-002 | A very large task title may harm list usability. | Layout and readability degradation. | Product and engineering | Open; define maximum length before implementation |
+| ID     | Question or risk                                                                 | Impact                                              | Owner                   | Status                                                  |
+| ------ | -------------------------------------------------------------------------------- | --------------------------------------------------- | ----------------------- | ------------------------------------------------------- |
+| OQ-001 | Should the MVP support a backend or remain local-only?                           | Changes persistence, privacy, and sync requirements | Product owner           | Assumed local-only for MVP                              |
+| OQ-002 | What confirmation wording and focus behavior should the delete confirmation use? | Affects deletion clarity and accidental-loss risk   | Product owner           | Open; deletion confirmation is mandatory                |
+| OQ-003 | Which browsers, operating systems, or runtime environments are supported?        | Determines compatibility testing                    | Engineering             | Open                                                    |
+| OQ-004 | What should happen if stored data is malformed?                                  | Affects recovery and user-visible error handling    | Engineering and product | Open; must be resolved before implementation completion |
+| R-001  | Local storage may be cleared or become unavailable.                              | User data may be unavailable.                       | Engineering             | Mitigated by clear errors and documented MVP limitation |
+| R-002  | A very large task title may harm list usability.                                 | Layout and readability degradation.                 | Product and engineering | Open; define maximum length before implementation       |
 
 ## 13. Implementation Readiness
 
@@ -428,6 +428,6 @@ Implementation may begin for the MVP when:
 
 ## 14. Change History
 
-| Version | Date | Change | Author |
-| --- | --- | --- | --- |
-| 1.0.0 | 2026-09-25 | Initial MVP requirements specification | johnmillerATcodemag-com |
+| Version | Date       | Change                                 | Author                  |
+| ------- | ---------- | -------------------------------------- | ----------------------- |
+| 1.0.0   | 2026-09-25 | Initial MVP requirements specification | johnmillerATcodemag-com |

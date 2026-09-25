@@ -8,16 +8,13 @@
 
 ## Objective
 
-- Apply reusable instruction changes based on PR #1 review comments and add root ignore rules for the project.
-
-Apply reusable instruction changes based on code and documentation review comments on PR #1.
+Apply reusable instruction changes based on PR #1 review comments and add root ignore rules for the project.
 
 ## Completed
 
 - `.github/instructions/test-driven-development.instructions.md` - Added contract-focused persistence/error tests, source-test guidance, and final verification requirements.
 - `.github/instructions/electron-react-typescript-stack.instructions.md` - Added SQLite schema invariants and failure-mapping tests.
 - `.github/instructions/architecture-decision-record.instructions.md` - Added status consistency and recorded-approval checks.
-- `.github/instructions/README.md` - Added the TDD catalog entry and updated descriptions.
 - `.github/instructions/README.md` - Added the TDD catalog entry and updated descriptions.
 - `.gitignore` - Added exclusions for dependencies, generated output, local env files, logs, and OS/editor artifacts.
 - `.gitignore.meta.md` - Added required provenance for the non-Markdown ignore file.
