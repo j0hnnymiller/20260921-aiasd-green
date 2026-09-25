@@ -1,0 +1,65 @@
+{
+  "name": "todo-list-manager",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "out/main/index.js",
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint . --max-warnings 0",
+    "test": "vitest run",
+    "smoke": "npm run build && node scripts/smoke.mjs",
+    "demo": "npm run build && node scripts/smoke.mjs --interactive",
+    "verify": "npm run typecheck && npm run lint && npm test && npm run smoke"
+  },
+  "dependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.0",
+    "@types/node": "^22.19.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^5.0.0",
+    "electron": "44.4.5",
+    "electron-vite": "5.0.0",
+    "eslint": "^10.11.0",
+    "globals": "^16.4.0",
+    "typescript": "^5.9.0",
+    "typescript-eslint": "^8.46.0",
+    "vite": "^7.0.0",
+    "vitest": "^5.0.2"
+  },
+  "x-ai-provenance": {
+    "ai_generated": true,
+    "model": "unknown/unknown@2026-09-25",
+    "operator": "johnmillerATcodemag-com",
+    "chat_id": "implement-todo-list-manager-slice-0-184524dc-1976-42bd-942e-21eba84b400e",
+    "prompt": "#file:implement-todo-list-manager-slice-0.prompt.md",
+    "started": "2026-09-25T18:27:00Z",
+    "ended": "2026-09-25T18:45:00Z",
+    "task_durations": [
+      {
+        "task": "repository review and platform baseline",
+        "duration": "00:04:00"
+      },
+      {
+        "task": "foundation implementation and tests",
+        "duration": "00:10:00"
+      },
+      {
+        "task": "verification and showcase documentation",
+        "duration": "00:04:00"
+      }
+    ],
+    "total_duration": "00:18:00",
+    "ai_log": "ai-logs/2026/09/25/implement-todo-list-manager-slice-0-184524dc-1976-42bd-942e-21eba84b400e/conversation.md",
+    "source": ".github/prompts/implement-todo-list-manager-slice-0.prompt.md"
+  },
+  "engines": {
+    "node": ">=22.13.0"
+  }
+}

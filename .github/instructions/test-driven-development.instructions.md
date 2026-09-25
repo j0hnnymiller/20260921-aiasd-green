@@ -1,23 +1,18 @@
 ---
 ai_generated: true
-model: "anthropic/claude-3.5-sonnet@2024-10-22"
+model: "unknown/unknown@2026-09-25"
 operator: "johnmillerATcodemag-com"
-chat_id: "test-driven-development-20260520"
-prompt: |
-  Create a comprehensive instruction file for test-driven development (TDD) that covers
-  the TDD workflow, best practices, patterns, anti-patterns, and practical examples.
-  Include guidance for AI-assisted test authoring and integration with vertical slices.
-started: "2026-05-20T00:00:00Z"
-ended: "2026-05-20T00:15:00Z"
+chat_id: "d79e7e5d-59cd-426a-b501-ff0efedad44a"
+prompt: "review the comments on PR 1 and propose instruction changes to prevent generating code in the future that doesn't pass code reviews\n\ngo ahead make thes changes"
+started: "2026-09-25T19:08:17Z"
+ended: "2026-09-25T19:16:04Z"
 task_durations:
-  - task: "framework and structure design"
-    duration: "00:05:00"
-  - task: "content creation and examples"
-    duration: "00:08:00"
-  - task: "review and refinement"
-    duration: "00:02:00"
-total_duration: "00:15:00"
-ai_log: "ai-logs/2026/05/20/test-driven-development-20260520/conversation.md"
+  [
+    { task: "PR feedback and guidance review", duration: "00:02:00" },
+    { task: "instruction updates and provenance", duration: "00:05:47" },
+  ]
+total_duration: "00:07:47"
+ai_log: "ai-logs/2026/09/25/d79e7e5d-59cd-426a-b501-ff0efedad44a/conversation.md"
 source: "johnmillerATcodemag-com"
 applyTo: "**/*.{cs,ts,js,py,java,go,rb}"
 ---
@@ -434,6 +429,19 @@ def test_register_with_duplicate_email_raises_error():
     with pytest.raises(DuplicateEmailError):
         User.register("john@example.com", "Pass456")
 ```
+
+---
+
+### 4. Contract and Failure-Path Tests
+
+Test observable contracts and failure outcomes, not incidental implementation spelling.
+
+- For every declared error/result code, trigger the corresponding failure through the public boundary or a controlled dependency and assert the exact returned code.
+- For exception mapping, preserve and map the original failure before cleanup. Verify that rollback or close failures do not replace the original domain error.
+- For persistence schemas, verify version, column names and order, types, nullability, primary keys, defaults, and constraints. Test constraints with invalid writes; metadata queries such as SQLite `PRAGMA table_info` do not prove `CHECK` behavior.
+- Test an existing database whose column names look correct but whose types or constraints are incompatible. Initialization must reject it or migrate it according to the documented version policy, never report it healthy by name alone.
+- Verify failed initialization and transactions leave existing data intact and release resources.
+- Do not assert exact source substrings, quote style, whitespace, or formatting to prove runtime behavior. Exercise exported behavior with injected dependencies or mocks. When a static architecture boundary must be checked, use an AST/parser or a dedicated lint rule.
 
 ---
 
@@ -854,6 +862,11 @@ pytest -n 4
 - [ ] All edge cases covered
 - [ ] Tests fail when code is broken
 - [ ] Tests pass when code is fixed
+- [ ] Tests assert observable behavior and exact public error codes, not quote- or formatting-sensitive source text
+- [ ] Persistence tests prove schema constraints and reject incompatible same-version schemas
+- [ ] Failure-path tests trigger each relevant infrastructure failure and verify its mapped result
+- [ ] The project's complete verification command passes after the final source or test edit
+- [ ] Required CI checks pass on the exact commit submitted for review
 
 **Code Quality**:
 
@@ -1057,7 +1070,7 @@ You've implemented TDD effectively if:
 
 ---
 
-**Document Version**: 1.0.0
-**Last Updated**: 2026-05-20
+**Document Version**: 1.0.1
+**Last Updated**: 2026-09-25
 **Maintainer**: Development Team
 **Related Practices**: Vertical slice development, AI-assisted code generation, continuous integration

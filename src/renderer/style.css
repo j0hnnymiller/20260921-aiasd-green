@@ -1,0 +1,39 @@
+:root {
+  color: #1c2927;
+  background: #f4f7f4;
+  font-family: "Segoe UI", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+main {
+  width: min(100% - 48px, 720px);
+  margin: 12vh auto 0;
+  padding: 32px 0;
+}
+
+h1 {
+  margin: 0 0 16px;
+  font-size: 28px;
+  font-weight: 650;
+}
+
+p {
+  margin: 0;
+  color: #4c625d;
+  line-height: 1.6;
+}
+
+[role="alert"] {
+  color: #8b2c24;
+}
