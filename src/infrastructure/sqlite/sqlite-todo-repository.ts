@@ -11,15 +11,26 @@ import {
 } from "../../shared/todo";
 
 const currentSchemaVersion = 1;
-const expectedColumns = ["id", "title", "status", "created_at"];
+const expectedTodoSchemaSql = normalizeSchemaSql(`
+  CREATE TABLE todos (
+    id TEXT PRIMARY KEY NOT NULL,
+    title TEXT NOT NULL CHECK (length(trim(title)) > 0),
+    status TEXT NOT NULL CHECK (status IN ('active', 'completed')),
+    created_at TEXT NOT NULL
+  )
+`);
+
+function normalizeSchemaSql(sql: string): string {
+  return sql.replace(/\s+/g, " ").trim().toLowerCase();
+}
 
 function hasExpectedTodoSchema(database: DatabaseSync): boolean {
-  const columns = database.prepare("PRAGMA table_info(todos)").all() as Array<{
-    name: string;
-  }>;
+  const table = database
+    .prepare("SELECT sql FROM sqlite_master WHERE type = 'table' AND name = 'todos'")
+    .get() as { sql?: string } | undefined;
   return (
-    JSON.stringify(columns.map((column) => column.name)) ===
-    JSON.stringify(expectedColumns)
+    typeof table?.sql === "string" &&
+    normalizeSchemaSql(table.sql) === expectedTodoSchemaSql
   );
 }
 
@@ -94,10 +105,10 @@ export class SqliteTodoRepository implements TodoRepositoryInitializer {
             PRAGMA user_version = ${currentSchemaVersion};
           `);
           database.exec("COMMIT");
-        } catch {
+        } catch (error: unknown) {
           database.exec("ROLLBACK");
           database.close();
-          return failure("persistence-failed");
+          return failure(mapDatabaseFailure(error));
         }
       }
 
