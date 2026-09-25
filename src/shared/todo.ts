@@ -46,6 +46,7 @@ export interface AppFoundationStatus {
 
 export interface TodoPreloadApi {
   getFoundationStatus(): Promise<Result<AppFoundationStatus>>;
+  createTodo(title: string): Promise<Result<Todo>>;
 }
 
 export function success<T>(value: T): Result<T> {

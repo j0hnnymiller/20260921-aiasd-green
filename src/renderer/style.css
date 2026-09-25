@@ -4,6 +4,10 @@
   font-family: "Segoe UI", sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
+  --ink: #1c2927;
+  --muted: #4c625d;
+  --line: #c5d2cc;
+  --accent: #176b54;
 }
 
 * {
@@ -17,9 +21,9 @@ body {
 }
 
 main {
-  width: min(100% - 48px, 720px);
+  width: min(100% - 32px, 720px);
   margin: 12vh auto 0;
-  padding: 32px 0;
+  padding: 32px 0 64px;
 }
 
 h1 {
@@ -30,10 +34,135 @@ h1 {
 
 p {
   margin: 0;
-  color: #4c625d;
+  color: var(--muted);
   line-height: 1.6;
 }
 
+.todo-entry {
+  margin-top: 32px;
+}
+
+.todo-entry label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.todo-entry__controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+}
+
+.todo-entry input,
+.todo-entry button {
+  min-height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  font: inherit;
+}
+
+.todo-entry input {
+  min-width: 0;
+  padding: 8px 12px;
+  color: var(--ink);
+  background: #fff;
+}
+
+.todo-entry input:focus-visible,
+.todo-entry button:focus-visible {
+  outline: 3px solid #76b8a0;
+  outline-offset: 2px;
+}
+
+.todo-entry input[aria-invalid="true"] {
+  border-color: #a7352c;
+}
+
+.todo-entry button {
+  padding: 8px 18px;
+  border-color: var(--accent);
+  color: #fff;
+  background: var(--accent);
+  cursor: pointer;
+}
+
+.todo-entry button:disabled {
+  cursor: wait;
+  opacity: 0.72;
+}
+
+.todo-entry__hint,
+.todo-entry__error,
+.todo-entry__success {
+  margin-top: 8px;
+  min-height: 1.6em;
+}
+
+.todo-entry__error,
 [role="alert"] {
   color: #8b2c24;
+}
+
+.todo-entry__success {
+  color: var(--accent);
+}
+
+.todo-list {
+  margin-top: 40px;
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
+}
+
+.todo-list h2 {
+  margin: 0 0 6px;
+  font-size: 18px;
+}
+
+.todo-list__limitation {
+  font-size: 14px;
+}
+
+.todo-list ul {
+  display: grid;
+  gap: 8px;
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.todo-list li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 6px 12px;
+  border-left: 3px solid var(--accent);
+  padding: 12px;
+  background: #fff;
+}
+
+.todo-list li > span:first-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  color: var(--ink);
+}
+
+.todo-list__status,
+.todo-list time {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.todo-list time {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 380px) {
+  main {
+    margin-top: 8vh;
+  }
+
+  .todo-entry__controls {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }

@@ -7,14 +7,17 @@ const preloadSource = readFileSync(
 );
 
 describe("preload API boundary", () => {
-  it("exposes one fixed status operation and no raw IPC object", () => {
+  it("exposes only fixed status and create operations, not raw IPC", () => {
     expect(preloadSource).toContain(
       'contextBridge.exposeInMainWorld("todoApi", todoApi)',
     );
-    expect(preloadSource).toContain(
-      "ipcRenderer.invoke('app:get-foundation-status')",
+    expect(preloadSource).toMatch(
+      /ipcRenderer\.invoke\(["']app:get-foundation-status["']\)/,
     );
-    expect(preloadSource.match(/ipcRenderer\.invoke\(/g)).toHaveLength(1);
+    expect(preloadSource).toMatch(
+      /ipcRenderer\.invoke\(["']todos:create["'], \{ title \}\)/,
+    );
+    expect(preloadSource.match(/ipcRenderer\.invoke\(/g)).toHaveLength(2);
     expect(preloadSource).not.toMatch(/exposeInMainWorld\(['"]ipcRenderer/);
   });
 });

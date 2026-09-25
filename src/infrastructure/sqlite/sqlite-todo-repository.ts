@@ -5,6 +5,7 @@ import {
   failure,
   success,
   type Result,
+  type Todo,
   type TodoErrorCode,
   type TodoRepositoryInitializer,
   type TodoRepositoryStatus,
@@ -127,6 +128,37 @@ export class SqliteTodoRepository implements TodoRepositoryInitializer {
         return failure(mapDatabaseFailure(error));
       }
       return failure(mapDatabaseFailure(error));
+    }
+  }
+
+  async create(todo: Todo): Promise<Result<Todo>> {
+    const database = this.database;
+    if (!database) {
+      return failure("storage-unavailable");
+    }
+
+    let transactionStarted = false;
+    try {
+      database.exec("BEGIN IMMEDIATE");
+      transactionStarted = true;
+      database
+        .prepare(
+          "INSERT INTO todos (id, title, status, created_at) VALUES (?, ?, ?, ?)",
+        )
+        .run(todo.id, todo.title, todo.status, todo.createdAt);
+      database.exec("COMMIT");
+      transactionStarted = false;
+      return success(todo);
+    } catch (error: unknown) {
+      const errorCode = mapDatabaseFailure(error);
+      if (transactionStarted) {
+        try {
+          database.exec("ROLLBACK");
+        } catch {
+          return failure(errorCode);
+        }
+      }
+      return failure(errorCode);
     }
   }
 

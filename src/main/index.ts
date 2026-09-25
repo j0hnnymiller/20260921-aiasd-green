@@ -8,16 +8,19 @@ import {
   type TodoRepositoryStatus,
 } from "../shared/todo";
 import { SqliteTodoRepository } from "../infrastructure/sqlite/sqlite-todo-repository";
+import { createTodoRequestHandler } from "./create-todo-handler";
 import { createMainWindowOptions } from "./window-options";
 
 const currentDirectory = dirname(fileURLToPath(import.meta.url));
 const statusChannel = "app:get-foundation-status";
+const createTodoChannel = "todos:create";
 const rendererUrl =
   process.env.ELECTRON_RENDERER_URL ??
   new URL(`../renderer/index.html`, import.meta.url).toString();
 let foundationStatus: Result<TodoRepositoryStatus, TodoError> = failure(
   "storage-unavailable",
 );
+let repository: SqliteTodoRepository | undefined;
 
 function createWindow(): void {
   const window = new BrowserWindow(
@@ -32,9 +35,15 @@ function createWindow(): void {
 }
 
 ipcMain.handle(statusChannel, () => foundationStatus);
+ipcMain.handle(createTodoChannel, (_event, request: unknown) => {
+  if (!repository) {
+    return failure("storage-unavailable");
+  }
+  return createTodoRequestHandler(repository)(request);
+});
 
 app.whenReady().then(() => {
-  const repository = new SqliteTodoRepository(
+  repository = new SqliteTodoRepository(
     join(app.getPath("userData"), "todos.sqlite"),
   );
   foundationStatus = repository.initialize();

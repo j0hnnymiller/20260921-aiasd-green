@@ -1,6 +1,7 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import { DatabaseSync } from "node:sqlite";
 import { afterEach, describe, expect, it } from "vitest";
+import type { Todo } from "../../shared/todo";
 import { createTemporaryTodoDatabase } from "./testing";
 
 describe("temporary SQLite repository database", () => {
@@ -41,6 +42,69 @@ describe("temporary SQLite repository database", () => {
       ).toEqual(["id", "title", "status", "created_at"]);
     } finally {
       database.close();
+    }
+  });
+
+  it("commits a created item before returning and preserves it after reopening", async () => {
+    temporaryDatabase = createTemporaryTodoDatabase();
+    expect(temporaryDatabase.repository.initialize().ok).toBe(true);
+    const todo: Todo = {
+      id: "todo-reopen",
+      title: "Review the sample",
+      status: "active",
+      createdAt: "2026-09-25T12:00:00.000Z",
+    };
+
+    await expect(temporaryDatabase.repository.create(todo)).resolves.toEqual({
+      ok: true,
+      value: todo,
+    });
+    temporaryDatabase.close();
+
+    const reopenedDatabase = new DatabaseSync(temporaryDatabase.databasePath, {
+      readOnly: true,
+    });
+    try {
+      expect(
+        reopenedDatabase
+          .prepare(
+            "SELECT id, title, status, created_at AS createdAt FROM todos",
+          )
+          .get(),
+      ).toEqual(todo);
+    } finally {
+      reopenedDatabase.close();
+    }
+  });
+
+  it("does not report success or leave a row when the insert transaction fails", async () => {
+    temporaryDatabase = createTemporaryTodoDatabase();
+    expect(temporaryDatabase.repository.initialize().ok).toBe(true);
+    const database = new DatabaseSync(temporaryDatabase.databasePath);
+    database.exec(`
+      CREATE TRIGGER reject_todo_insert BEFORE INSERT ON todos
+      BEGIN SELECT RAISE(ABORT, 'test failure'); END;
+    `);
+    database.close();
+
+    await expect(
+      temporaryDatabase.repository.create({
+        id: "todo-failed",
+        title: "Do not save",
+        status: "active",
+        createdAt: "2026-09-25T12:00:00.000Z",
+      }),
+    ).resolves.toEqual({ ok: false, error: { code: "storage-unavailable" } });
+
+    const check = new DatabaseSync(temporaryDatabase.databasePath, {
+      readOnly: true,
+    });
+    try {
+      expect(check.prepare("SELECT COUNT(*) AS count FROM todos").get()).toEqual({
+        count: 0,
+      });
+    } finally {
+      check.close();
     }
   });
 
