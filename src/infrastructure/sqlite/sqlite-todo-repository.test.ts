@@ -67,11 +67,11 @@ describe("temporary SQLite repository database", () => {
     }
   });
 
-  it("rejects a schema that claims version 1 but has an unexpected shape", () => {
+  it("rejects a schema that claims version 1 but weakens the expected table definition", () => {
     temporaryDatabase = createTemporaryTodoDatabase();
     const database = new DatabaseSync(temporaryDatabase.databasePath);
     database.exec(
-      "CREATE TABLE todos (id TEXT PRIMARY KEY); PRAGMA user_version = 1",
+      "CREATE TABLE todos (id TEXT PRIMARY KEY, title TEXT, status TEXT, created_at INTEGER); PRAGMA user_version = 1",
     );
     database.close();
 
