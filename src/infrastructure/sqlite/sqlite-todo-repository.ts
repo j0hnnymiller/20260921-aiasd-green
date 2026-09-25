@@ -94,10 +94,10 @@ export class SqliteTodoRepository implements TodoRepositoryInitializer {
             PRAGMA user_version = ${currentSchemaVersion};
           `);
           database.exec("COMMIT");
-        } catch {
+        } catch (error: unknown) {
           database.exec("ROLLBACK");
           database.close();
-          return failure("persistence-failed");
+          return failure(mapDatabaseFailure(error));
         }
       }
 
