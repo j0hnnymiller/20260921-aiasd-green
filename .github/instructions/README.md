@@ -6,17 +6,20 @@ This folder contains the canonical versions of all AI-assisted development instr
 
 ## Files in this folder:
 
-| File                                                                                               | Purpose                       | Description                                                             |
-| -------------------------------------------------------------------------------------------------- | ----------------------------- | ----------------------------------------------------------------------- |
-| [`ai-assisted-output.instructions.md`](ai-assisted-output.instructions.md)                         | AI Provenance Policy          | Main AI provenance and logging policy with chat management requirements |
-| [`business-rules-to-slices.instructions.md`](business-rules-to-slices.instructions.md)             | Vertical Slice Guidelines     | Convert business rules into vertical slice implementations              |
-| [`agent-file.instructions.md`](agent-file.instructions.md)                                         | Agent Authoring               | Guidelines for creating custom GitHub Copilot agents                    |
-| [`instruction-files.instructions.md`](instruction-files.instructions.md)                           | Instruction Standards         | Standards for creating and maintaining instruction files                |
-| [`instruction-prompt-files.instructions.md`](instruction-prompt-files.instructions.md)             | Instruction Prompt Guidelines | Creating prompts that generate instruction files                        |
-| [`marp-slides.instructions.md`](marp-slides.instructions.md)                                       | Slide Creation                | Guidelines for creating Marp-based presentation slides                  |
-| [`prompt-file.instructions.md`](prompt-file.instructions.md)                                       | Prompt File Standards         | Structure and requirements for AI prompt files                          |
-| [`software-requirements-document.instructions.md`](software-requirements-document.instructions.md) | Requirements Documentation    | Authoring and reviewing software requirements documents                 |
-| [`vertical-slice.instructions.md`](vertical-slice.instructions.md)                                 | Vertical Slice Architecture   | Implementation guidelines for vertical slice patterns                   |
+| File                                                                                                 | Purpose                         | Description                                                                |
+| ---------------------------------------------------------------------------------------------------- | ------------------------------- | -------------------------------------------------------------------------- |
+| [`ai-assisted-output.instructions.md`](ai-assisted-output.instructions.md)                           | AI Provenance Policy            | Main AI provenance and logging policy with chat management requirements    |
+| [`architecture-decision-record.instructions.md`](architecture-decision-record.instructions.md)       | ADR Documentation               | Authoring and reviewing Architecture Decision Records                      |
+| [`electron-react-typescript-stack.instructions.md`](electron-react-typescript-stack.instructions.md) | Electron React TypeScript       | Architecture and development rules for the Electron TODO application stack |
+| [`electron-security-packaging.instructions.md`](electron-security-packaging.instructions.md)         | Electron Security and Packaging | IPC, native SQLite, packaging, updates, and release security rules         |
+| [`business-rules-to-slices.instructions.md`](business-rules-to-slices.instructions.md)               | Vertical Slice Guidelines       | Convert business rules into vertical slice implementations                 |
+| [`agent-file.instructions.md`](agent-file.instructions.md)                                           | Agent Authoring                 | Guidelines for creating custom GitHub Copilot agents                       |
+| [`instruction-files.instructions.md`](instruction-files.instructions.md)                             | Instruction Standards           | Standards for creating and maintaining instruction files                   |
+| [`instruction-prompt-files.instructions.md`](instruction-prompt-files.instructions.md)               | Instruction Prompt Guidelines   | Creating prompts that generate instruction files                           |
+| [`marp-slides.instructions.md`](marp-slides.instructions.md)                                         | Slide Creation                  | Guidelines for creating Marp-based presentation slides                     |
+| [`prompt-file.instructions.md`](prompt-file.instructions.md)                                         | Prompt File Standards           | Structure and requirements for AI prompt files                             |
+| [`software-requirements-document.instructions.md`](software-requirements-document.instructions.md)   | Requirements Documentation      | Authoring and reviewing software requirements documents                    |
+| [`vertical-slice.instructions.md`](vertical-slice.instructions.md)                                   | Vertical Slice Architecture     | Implementation guidelines for vertical slice patterns                      |
 
 ## Purpose
 

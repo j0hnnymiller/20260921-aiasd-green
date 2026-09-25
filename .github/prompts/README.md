@@ -56,6 +56,12 @@ This directory contains standardized AI prompts for various development and anal
 | [`solution-architect/security-architecture.prompt.md`](solution-architect/security-architecture.prompt.md) | Security Architecture          | Security controls and threat mitigation             |
 | [`solution-architect/technology-evaluation.prompt.md`](solution-architect/technology-evaluation.prompt.md) | Technology Evaluation          | Technology assessment and selection guidance        |
 
+### Implementation Prompts
+
+| File                                                                                             | Purpose                             | Output                                                        |
+| ------------------------------------------------------------------------------------------------ | ----------------------------------- | ------------------------------------------------------------- |
+| [`implement-todo-list-manager-slice-0.prompt.md`](implement-todo-list-manager-slice-0.prompt.md) | TODO Manager Slice 0 Implementation | Runnable foundation, verification, and stakeholder demo guide |
+
 ## Meta Prompts
 
 The [`meta/`](meta/) subdirectory contains prompts that generate other prompts or instruction files. See [meta/README.md](meta/README.md) for details.
