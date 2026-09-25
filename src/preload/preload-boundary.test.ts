@@ -9,7 +9,7 @@ const preloadSource = readFileSync(
 describe("preload API boundary", () => {
   it("exposes one fixed status operation and no raw IPC object", () => {
     expect(preloadSource).toContain(
-      "contextBridge.exposeInMainWorld('todoApi', todoApi)",
+      'contextBridge.exposeInMainWorld("todoApi", todoApi)',
     );
     expect(preloadSource).toContain(
       "ipcRenderer.invoke('app:get-foundation-status')",
