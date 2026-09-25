@@ -28,10 +28,4 @@ desktop.ini
 
 # Editor files
 .idea/
-*.swpnode_modules/
-out/
-dist/
-coverage/
-.env
-.env.*
-!.env.example
+*.swp
