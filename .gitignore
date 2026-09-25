@@ -1,0 +1,37 @@
+# Dependencies
+/node_modules/
+
+# Generated application output
+/out/
+/dist/
+/release/
+/coverage/
+/.vite/
+/.cache/
+/.npm/
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Package-manager logs
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+*.log
+
+# Operating system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor files
+.idea/
+*.swpnode_modules/
+out/
+dist/
+coverage/
+.env
+.env.*
+!.env.example
