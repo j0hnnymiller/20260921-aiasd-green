@@ -1,26 +1,23 @@
 ---
 ai_generated: true
-model: "anthropic/claude-3.5-sonnet@2024-10-22"
+model: "unknown/unknown@2026-09-25"
 operator: "johnmillerATcodemag-com"
-chat_id: "electron-react-typescript-stack-20260925"
-prompt: |
-  Create instruction files for stack 3
-started: "2026-09-25T09:20:00-07:00"
-ended: "2026-09-25T09:20:00-07:00"
+chat_id: "d79e7e5d-59cd-426a-b501-ff0efedad44a"
+prompt: "review the comments on PR 1 and propose instruction changes to prevent generating code in the future that doesn't pass code reviews\n\ngo ahead make thes changes"
+started: "2026-09-25T19:08:17Z"
+ended: "2026-09-25T19:16:04Z"
 task_durations:
-  - task: "stack and ADR review"
-    duration: "00:05:00"
-  - task: "architecture instruction drafting"
-    duration: "00:10:00"
-  - task: "validation and provenance"
-    duration: "00:05:00"
-total_duration: "00:20:00"
-ai_log: "ai-logs/2026/09/25/electron-react-typescript-stack-20260925/conversation.md"
+  [
+    { task: "PR feedback and guidance review", duration: "00:02:00" },
+    { task: "instruction updates and provenance", duration: "00:05:47" },
+  ]
+total_duration: "00:07:47"
+ai_log: "ai-logs/2026/09/25/d79e7e5d-59cd-426a-b501-ff0efedad44a/conversation.md"
 source: "johnmillerATcodemag-com"
 name: "electron-react-typescript-stack"
 description: "Use when building or reviewing the Electron, React, TypeScript, and SQLite TODO application stack, including process boundaries, application services, repositories, state, UI, and tests."
 applyTo: "**/{src,app,main,renderer,preload,electron}/**/*.{ts,tsx,js,jsx}"
-version: "1.0.0"
+version: "1.0.1"
 author: "johnmillerATcodemag-com"
 tags: ["electron", "react", "typescript", "sqlite", "desktop"]
 owner: "Development Team"
@@ -81,6 +78,9 @@ Do not import renderer modules into the main process or database modules into Re
 - Version the schema and run migrations before loading application data.
 - Use transactions for mutations that must update multiple records or derived data atomically.
 - Return domain-level errors for unavailable, read-only, malformed, or failed storage.
+- Validate the complete schema contract, not only table or column names: verify schema version, column types, nullability, primary keys, defaults, and constraints. Test SQLite `CHECK` constraints with invalid writes because column metadata alone does not establish them.
+- Reject or explicitly migrate a same-version schema with incompatible types or missing constraints; never report it initialized based only on matching column names.
+- Map the original database exception to the domain error before attempting rollback or close. Cleanup failures must not mask the original mapped failure.
 - Preserve the original database file before attempting risky recovery or migration.
 - Test the repository independently from Electron and React with a temporary database.
 - Never log task titles or task content while diagnosing persistence failures.
@@ -89,6 +89,8 @@ Do not import renderer modules into the main process or database modules into Re
 
 - Unit-test domain validation, task commands, filters, counts, and error mapping without Electron.
 - Test the repository against a temporary SQLite database, including migration and transaction failure behavior.
+- Include same-version incompatible-schema cases, invalid writes for declared constraints, read-only initialization or migration failures, and assertions for the exact mapped domain error.
+- Exercise failures at transaction start, schema changes, commit, and cleanup where implemented; confirm cleanup errors do not hide the triggering storage error.
 - Test preload and IPC contracts for valid requests, invalid payloads, unknown channels, and rejected operations.
 - Test React behavior for keyboard workflows, accessible names, empty states, validation, persistence errors, and count updates.
 - Run end-to-end tests against a packaged-like Electron process for create, edit, complete, delete, reload, and recovery scenarios.
@@ -102,10 +104,13 @@ Do not import renderer modules into the main process or database modules into Re
 - [ ] Application services are testable without Electron or React.
 - [ ] SQLite access is isolated behind `TodoRepository`.
 - [ ] Strict TypeScript checking passes without new `any` escapes.
+- [ ] Schema tests verify column types, nullability, keys, defaults, and constraints, and reject incompatible same-version schemas.
+- [ ] Each supported persistence failure is tested through the public result contract and maps to its declared error code.
 - [ ] Task mutations persist before success is shown.
 - [ ] Persistence failures preserve state where possible and are visible to the user.
 - [ ] Keyboard and assistive-technology workflows are tested.
 - [ ] The application does not transmit TODO content remotely.
+- [ ] The full project verification command passes after the final source or test edit, and required CI checks pass for the exact reviewed commit.
 
 ## Summary
 

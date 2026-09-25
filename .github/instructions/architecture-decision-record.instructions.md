@@ -1,26 +1,23 @@
 ---
 ai_generated: true
-model: "anthropic/claude-3.5-sonnet@2024-10-22"
+model: "unknown/unknown@2026-09-25"
 operator: "johnmillerATcodemag-com"
-chat_id: "architecture-decision-record-20260925"
-prompt: |
-  Follow instructions in #prompt:SKILL.md with these arguments: fir an ADR Architecture Decision Record
-started: "2026-09-25T08:45:00-07:00"
-ended: "2026-09-25T08:45:00-07:00"
+chat_id: "d79e7e5d-59cd-426a-b501-ff0efedad44a"
+prompt: "review the comments on PR 1 and propose instruction changes to prevent generating code in the future that doesn't pass code reviews\n\ngo ahead make thes changes"
+started: "2026-09-25T19:08:17Z"
+ended: "2026-09-25T19:16:04Z"
 task_durations:
-  - task: "conversation and convention review"
-    duration: "00:04:00"
-  - task: "ADR instruction drafting"
-    duration: "00:10:00"
-  - task: "validation and provenance"
-    duration: "00:04:00"
-total_duration: "00:18:00"
-ai_log: "ai-logs/2026/09/25/architecture-decision-record-20260925/conversation.md"
+  [
+    { task: "PR feedback and guidance review", duration: "00:02:00" },
+    { task: "instruction updates and provenance", duration: "00:05:47" },
+  ]
+total_duration: "00:07:47"
+ai_log: "ai-logs/2026/09/25/d79e7e5d-59cd-426a-b501-ff0efedad44a/conversation.md"
 source: "johnmillerATcodemag-com"
 name: "architecture-decision-record"
 description: "Use when creating, reviewing, or updating an ADR, Architecture Decision Record, architecture decision, decision log, or record of a technical trade-off."
 applyTo: "**/{adr,adrs,architecture,decisions}/**/*.md"
-version: "1.0.0"
+version: "1.0.1"
 author: "johnmillerATcodemag-com"
 tags: ["adr", "architecture", "decisions", "trade-offs", "documentation"]
 owner: "Development Team"
@@ -124,8 +121,9 @@ Before accepting an ADR:
 3. Confirm that credible alternatives and trade-offs are documented.
 4. Review security, privacy, reliability, cost, compliance, and operational consequences.
 5. Confirm links, owners, validation evidence, and migration or rollback plans.
-6. Record reviewer concerns as explicit follow-up work or open risks.
-7. Change the status to `Accepted` only after the accountable decision makers approve it.
+6. Compare the ADR status with linked implementation plans, readiness gates, and decision summaries. Use only the permitted status values and resolve any conflict before acceptance.
+7. Keep the ADR `Proposed` while approval is pending. Change it to `Accepted` only after the accountable decision makers approve it, and update linked readiness records to reflect that same recorded decision.
+8. Record reviewer concerns as explicit follow-up work or open risks.
 
 When a decision is no longer valid, create a new ADR with the new decision and link the old ADR as `Superseded`. Preserve the original context and decision for historical traceability.
 
@@ -191,6 +189,8 @@ When a decision is no longer valid, create a new ADR with the new decision and l
 - [ ] Security, privacy, reliability, performance, cost, and compliance impacts were considered where relevant.
 - [ ] Implementation, validation, rollout, and rollback needs are identified.
 - [ ] Related records and supersession links resolve.
+- [ ] The ADR status uses a permitted value and agrees with linked plans and readiness gates.
+- [ ] `Accepted` is supported by recorded approval from the accountable deciders.
 - [ ] The ADR does not silently rewrite a previous accepted decision.
 - [ ] No secrets, credentials, or unnecessary personal data are included.
 
@@ -200,7 +200,7 @@ An effective ADR makes the decision and its rationale discoverable long after th
 
 ---
 
-**Document Version**: 1.0.0
+**Document Version**: 1.0.1
 **Last Updated**: 2026-09-25
 **Maintainer**: Development Team
 **Related Instructions**: [Instruction File Standards](instruction-files.instructions.md), [Software Requirements Document](software-requirements-document.instructions.md)
