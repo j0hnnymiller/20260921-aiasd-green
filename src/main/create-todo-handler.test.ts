@@ -1,9 +1,5 @@
 import { describe, expect, it, vi } from "vitest";
-import {
-  success,
-  type Todo,
-  type TodoRepository,
-} from "../shared/todo";
+import { success, type Todo, type TodoRepository } from "../shared/todo";
 import { createTodoRequestHandler } from "./create-todo-handler";
 
 function createRepository() {
@@ -17,7 +13,13 @@ describe("create TODO IPC request handler", () => {
     const repository = createRepository();
     const handleRequest = createTodoRequestHandler(repository);
 
-    for (const request of [null, "title", {}, { title: 42 }, { title: "x", extra: true }]) {
+    for (const request of [
+      null,
+      "title",
+      {},
+      { title: 42 },
+      { title: "x", extra: true },
+    ]) {
       await expect(handleRequest(request)).resolves.toEqual({
         ok: false,
         error: { code: "invalid-input" },

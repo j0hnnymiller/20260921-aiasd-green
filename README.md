@@ -36,8 +36,8 @@ Run the complete repeatable gate with `npm run verify`. It performs strict type 
 
 ## Project References
 
-
 See the [requirements](requirements/todo-list-manager-requirements.md), [architecture decision](architecture/decisions/ADR-001-desktop-local-sqlite.md), [implementation plan](docs/todo-list-manager-vertical-slice-implementation-plan.md), [Slice 0 stakeholder showcase guide](docs/todo-list-manager-slice-0-showcase.md), and [Slice 2 implementation prompt](.github/prompts/implement-todo-list-manager-slice-2.prompt.md).
+
 ## Current Capability and Limits
 
 - Create one active TODO with a non-blank title. Boundary whitespace is trimmed; internal whitespace and case are preserved.

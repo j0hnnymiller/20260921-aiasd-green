@@ -100,7 +100,9 @@ describe("temporary SQLite repository database", () => {
       readOnly: true,
     });
     try {
-      expect(check.prepare("SELECT COUNT(*) AS count FROM todos").get()).toEqual({
+      expect(
+        check.prepare("SELECT COUNT(*) AS count FROM todos").get(),
+      ).toEqual({
         count: 0,
       });
     } finally {

@@ -14,7 +14,16 @@ prompt_metadata:
   updated: "2026-09-25"
   output_path: application source, tests, and docs/todo-list-manager-slice-2-showcase.md
   category: implementation
-  tags: [electron, react, typescript, sqlite, vertical-slice, verification, showcase]
+  tags:
+    [
+      electron,
+      react,
+      typescript,
+      sqlite,
+      vertical-slice,
+      verification,
+      showcase,
+    ]
   output_format: code
 ai_generated: true
 operator: "johnmillerATcodemag-com"

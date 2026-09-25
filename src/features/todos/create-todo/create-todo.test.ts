@@ -18,10 +18,14 @@ function createRepository() {
 describe("createTodo", () => {
   it("trims only title boundaries and returns the durably saved active item", async () => {
     const repository = createRepository();
-    const result = await createTodo(" \tReview the draft  TODAY\n ", repository, {
-      createId: () => "todo-1",
-      now: () => fixedDate,
-    });
+    const result = await createTodo(
+      " \tReview the draft  TODAY\n ",
+      repository,
+      {
+        createId: () => "todo-1",
+        now: () => fixedDate,
+      },
+    );
 
     expect(result).toEqual({
       ok: true,
@@ -33,7 +37,9 @@ describe("createTodo", () => {
       },
     });
     expect(repository.create).toHaveBeenCalledOnce();
-    expect(repository.create).toHaveBeenCalledWith(result.ok ? result.value : null);
+    expect(repository.create).toHaveBeenCalledWith(
+      result.ok ? result.value : null,
+    );
   });
 
   it("rejects empty and whitespace-only titles without persisting", async () => {

@@ -80,7 +80,9 @@ export function App() {
           <input
             autoComplete="off"
             id="todo-title"
-            aria-describedby={creation.error ? "todo-entry-error" : "todo-entry-hint"}
+            aria-describedby={
+              creation.error ? "todo-entry-error" : "todo-entry-hint"
+            }
             aria-invalid={creation.error === "invalid-input"}
             onChange={(event) =>
               dispatchCreation({

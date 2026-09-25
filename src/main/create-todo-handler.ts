@@ -9,10 +9,12 @@ import {
   type CreateTodoDependencies,
 } from "../features/todos/create-todo/create-todo";
 
-function isCreateTodoRequest(
-  request: unknown,
-): request is { title: string } {
-  if (typeof request !== "object" || request === null || Array.isArray(request)) {
+function isCreateTodoRequest(request: unknown): request is { title: string } {
+  if (
+    typeof request !== "object" ||
+    request === null ||
+    Array.isArray(request)
+  ) {
     return false;
   }
 

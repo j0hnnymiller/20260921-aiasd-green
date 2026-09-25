@@ -21,8 +21,8 @@ source: ".github/prompts/implement-todo-list-manager-slice-2.prompt.md"
 
 # Slice 2 Stakeholder Showcase
 
-**Audience:** Product and engineering stakeholders  
-**Duration:** 6 minutes  
+**Audience:** Product and engineering stakeholders
+**Duration:** 6 minutes
 **Target:** Windows x64 development build
 
 ## Before the Demo

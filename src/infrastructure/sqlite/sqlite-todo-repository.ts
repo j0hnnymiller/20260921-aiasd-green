@@ -27,7 +27,9 @@ function normalizeSchemaSql(sql: string): string {
 
 function hasExpectedTodoSchema(database: DatabaseSync): boolean {
   const table = database
-    .prepare("SELECT sql FROM sqlite_master WHERE type = 'table' AND name = 'todos'")
+    .prepare(
+      "SELECT sql FROM sqlite_master WHERE type = 'table' AND name = 'todos'",
+    )
     .get() as { sql?: string } | undefined;
   return (
     typeof table?.sql === "string" &&
